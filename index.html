@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+
+    <link rel="stylesheet" href="dist/zuck.css">
+
+
+
+  </head>
+
+  <body>
+
+
+    <div id="stories" class="storiesWrapper"></div>
+
+    <script src="dist/zuck.js"></script>
+
+
+
+
+    <script>
+
+      var timestamp = function() {
+        var timeIndex = 0;
+        var shifts = [35, 60, 60 * 3, 60 * 60 * 2, 60 * 60 * 25, 60 * 60 * 24 * 4, 60 * 60 * 24 * 10];
+
+        var now = new Date();
+        var shift = shifts[timeIndex++] || 0;
+        var date = new Date(now - shift * 1000);
+
+        return date.getTime() / 1000;
+      };
+
+      let getStories = [
+        {
+          id: "NYT",               
+          photo: "https://pbs.twimg.com/profile_images/1098244578472280064/gjkVMelR_400x400.png",            
+          name: "NYT",            
+          seen: true,          
+
+          items: [        
+            {
+              id: "NYT-1",
+              type: "photo",    
+              length: 12,   
+              src: "https://static01.nyt.com/images/2020/04/15/business/16virus-nat-briefing-china/merlin_171601788_96d21fb3-835b-4044-be59-f7aeafa2af15-superJumbo.jpg?quality=90&auto=webp",      
+              link: "https://www.nytimes.com/2020/04/16/us/coronavirus-cases-live-updates.html",
+              time: timestamp(),
+              seen: false,
+              linkText: `
+              <h3>White House Offers Reopening Guidelines as U.S. Deaths Surge</h3>
+              <p>Mr. Biden said that the reopening phases the White House are discussing are generic and do not provide hard guidelines. “It’s about testing, tracing and treatment, and still we’re way behind,” Mr. Biden said.
+              </p>
+              `,
+            }
+          ]
+        }
+      ]
+
+
+
+      var stories = new Zuck('stories', {
+        backNative: true,
+        previousTap: true,
+        skin: 'snapgram',
+        autoFullScreen: false,
+        avatars: true,
+        paginationArrows: false,
+        list: false,
+        cubeEffect: true,
+        localStorage: true,
+        language: {visitLink: 'Show Article'},
+        stories: getStories
+      });
+    </script>
+  </body>
+</html>
